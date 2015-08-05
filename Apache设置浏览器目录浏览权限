@@ -1,0 +1,14 @@
+浏览器目录设置
+
+C:\wamp\bin\apache\Apache2.2.21\conf\httpd.conf
+#开启文件浏览目录
+#Options Indexes FollowSymLinks
+#关闭文件浏览目录
+Options FollowSymLinks
+
+
+Wamp apache目录浏览时icons图标不显示解决方法
+
+C:\wamp\bin\apache\Apache2.2.21\conf\extra\httpd-autoindex.conf
+Alias /icons/ "c:/wamp/bin/apache/Apache2.2.21/icons/"
+<Directory "c:/wamp/bin/apache/Apache2.2.21/icons/">
