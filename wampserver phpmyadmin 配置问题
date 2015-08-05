@@ -1,0 +1,105 @@
+方式1
+
+直接在登入  phpmyadmin 修改密码  不要加密修改
+
+然后在  wamp\apps\phpmyadmin3.4.10.1\config.inc.php中更改
+
+1.使用配置文件管理数据库
+
+ $cfg['Servers'][$i]['auth_type'] = 'config';                                    
+ $cfg['Servers'][$i]['user'] = $cfg['Servers'][$i]['user']='数据库用户名';    
+ $cfg['Servers'][$i]['password'] = $cfg['Servers'][$i]['password']='数据库密码';
+
+2.使用登入模式登入模式管理数据库
+
+ $cfg['Servers'][$i]['auth_type'] = 'cookie';                                        
+ // $cfg['Servers'][$i]['user'] = $cfg['Servers'][$i]['user']='数据库用户名';    
+ // $cfg['Servers'][$i]['password'] = $cfg['Servers'][$i]['password']='数据库密码';
+
+3.连接的 数据库的配置
+
+ 在wamp\apps\phpmyadmin3.4.10.1\libraries\config.default.php中更改
+
+ 只需要改这两处就可以啦！
+ $cfg['Servers'][$i]['host'] = 'localhost';
+ $cfg['Servers'][$i]['port'] = '3306';
+
+
+4.关于登陆phpmyadmin登陆后红色提示“配置文件现在需要一个短语密码”的解决办法： 
+
+ 在wamp\apps\phpmyadmin3.4.10.1\libraries\config.default.php中更改
+ $cfg['blowfish_secret'] = '任意字符串'; 
+
+
+
+方式2
+
+首先需在  mysql 命令行下  将其  数据库名  和 密码 修改为与你的数据库一致 
+
+update user set password=PASSWORD('要修改的密码') where user='root';
+
+然后在  wamp\apps\phpmyadmin3.4.10.1\config.inc.php中更改
+
+1.使用配置文件管理数据库
+
+ $cfg['Servers'][$i]['auth_type'] = 'config';                                    
+ $cfg['Servers'][$i]['user'] = $cfg['Servers'][$i]['user']='数据库用户名';    
+ $cfg['Servers'][$i]['password'] = $cfg['Servers'][$i]['password']='数据库密码';
+
+2.使用登入模式登入模式管理数据库
+
+ $cfg['Servers'][$i]['auth_type'] = 'cookie';                                        
+ // $cfg['Servers'][$i]['user'] = $cfg['Servers'][$i]['user']='数据库用户名';    
+ // $cfg['Servers'][$i]['password'] = $cfg['Servers'][$i]['password']='数据库密码';
+
+3.连接的 数据库的配置
+
+ 在wamp\apps\phpmyadmin3.4.10.1\libraries\config.default.php中更改
+
+ 只需要改这两处就可以啦！
+
+ $cfg['Servers'][$i]['host'] = 'localhost';
+ $cfg['Servers'][$i]['port'] = '3306';
+
+4.关于登陆phpmyadmin登陆后红色提示“配置文件现在需要一个短语密码”的解决办法： 
+ 
+ 在wamp\apps\phpmyadmin3.4.10.1\libraries\config.default.php中更改
+ $cfg['blowfish_secret'] = '任意字符串'; 
+
+
+
+注意事项：
+
+
+如果使用 phpmyadmin  登入后修改密码是  用了加密方式   数据库密码将为  加密后的密码    
+
+
+如果忘记了
+
+进入  mysql 的 my.ini  文件下
+在   [mysqld] 字段后添加  skip-grant-tables
+
+
+然后再通过  phpmyadmin   进入（不需要密码就能进入）
+
+找到  mysql 数据库里面的 user 表直接修改  用户的密码
+
+修改完后  去掉 [mysqld] 字段下的  skip-grant-tables
+
+
+资料链接  http://blog.csdn.net/wuyan_meixin/article/details/26217087
+
+
+
+/********************   设置外网访问 phpmyadmin  权限   **********************/
+
+C:\wamp\alias\phpmyadmin.conf
+
+<Directory "c:/wamp/apps/phpmyadmin3.4.10.1/">
+    Options Indexes FollowSymLinks MultiViews
+     AllowOverride all
+	Order Deny,Allow
+	Deny from all
+	#如果映射为该地址开启外网将会访问 Allow from 127.0.0.1
+	Allow from localhost
+</Directory>
