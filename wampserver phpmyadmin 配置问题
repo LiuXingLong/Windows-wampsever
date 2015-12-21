@@ -1,5 +1,5 @@
 方式1
-
+http://jingyan.baidu.com/album/e4511cf332b9832b845eaf27.html?picindex=3
 直接在登入  phpmyadmin 修改密码  不要加密修改
 
 然后在  wamp\apps\phpmyadmin3.4.10.1\config.inc.php中更改
