@@ -1,0 +1,13 @@
+打开 Apache 的配置文件   httpd.conf
+
+将  ScriptAlias /cgi-bin/ "/cgi-bin/"   修改为  ScriptAlias /cgi-bin/ "c:/wamp/www/cgi-bin/"
+
+设置存放应用的目录为  "c:/wamp/www/cgi-bin/" 
+
+<Directory "cgi-bin">
+    AllowOverride None
+    Options Indexes FollowSymLinks（修改为 Options Indexes FollowSymLinks Includes ExecCGI）
+    Order allow,deny
+    Allow from all
+</Directory
+
