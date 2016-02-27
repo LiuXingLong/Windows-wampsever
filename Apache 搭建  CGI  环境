@@ -1,3 +1,5 @@
+C、C++  Web 配置
+
 打开 Apache 的配置文件   httpd.conf
 
 将  ScriptAlias /cgi-bin/ "/cgi-bin/"   修改为  ScriptAlias /cgi-bin/ "c:/wamp/www/cgi-bin/"
@@ -20,4 +22,5 @@ rewrite_module
 cgi_module
 
 
+Python  Web 配置
 
