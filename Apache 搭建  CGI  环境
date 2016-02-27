@@ -15,4 +15,6 @@
 AddHandler cgi-script .cgi .pl .py .sh
 
 
-
+开启这两个 模块
+rewrite_module
+cgi_module
