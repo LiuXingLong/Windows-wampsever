@@ -11,3 +11,5 @@
     Allow from all
 </Directory
 
+# 使CGI支持 perl和python 和shell脚本
+AddHandler cgi-script .cgi .pl .py .sh
