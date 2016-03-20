@@ -1,0 +1,41 @@
+
+
+/***********************  正向代理  ****************************/
+
+开启下面模块
+
+LoadModule proxy_module modules/mod_proxy.so
+LoadModule proxy_connect_module modules/mod_proxy_connect.so
+LoadModule proxy_ftp_module modules/mod_proxy_ftp.so
+LoadModule proxy_http_module modules/mod_proxy_http.so
+
+修改 httpd.conf  文件
+
+添加 Listen 代理端口
+
+#Virtual hosts
+Include conf/extra/httpd-vhosts.conf
+
+
+在 httpd-vhosts.conf  下添加下面内容
+
+NameVirtualHost *:代理端口
+<VirtualHost *:代理端口>
+    ServerAdmin webmaster@dummy-host.localhost
+    DocumentRoot "C:\wamp\www"
+    ServerName localhost
+    ServerAlias localhost
+    ErrorLog "logs/dummy-host.example.com-error.log"
+    CustomLog "logs/dummy-host.example.com-access.log" common
+    
+	#正向代理设置
+    ProxyRequests On
+    ProxyVia On
+	
+	#用来控制谁可以访问你的代理
+	<Proxy *>
+        Order deny,allow
+        Deny from all
+        Allow from all
+    </Proxy>
+</VirtualHost>
