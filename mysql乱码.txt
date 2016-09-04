@@ -1,0 +1,33 @@
+mysql 乱码
+
+mysql.ini 文件修改
+
+1、在[client]字段里加入default-character-set=utf8，如下：
+
+[client]
+port = 3306
+socket = /var/lib/mysql/mysql.sock
+default-character-set=utf8
+
+2、在[mysqld]字段里加入character-set-server=utf8，如下：
+
+[mysqld]
+port = 3306
+socket = /var/lib/mysql/mysql.sock
+character-set-server=utf8
+
+3、在[mysql]字段里加入default-character-set=utf8，如下：
+
+[mysql]
+no-auto-rehash
+default-character-set=utf8
+
+
+curl 页面编码不匹配  修改编码
+$conn->exec("set names utf8");  // 设置数据的编码
+
+$encode = mb_detect_encoding($str, array("ASCII","UTF-8","GB2312","GBK","BIG5"));   检测字符编码
+$str = iconv("GB2312","UTF-8",$str);  // GB2312 改 UTF-8 
+
+
+
